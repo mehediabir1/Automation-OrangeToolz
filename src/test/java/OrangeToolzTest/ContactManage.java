@@ -19,13 +19,15 @@ public class ContactManage extends Base{
         Login();
         ContactManage();
         NewContact();
-        //GroupTag_2001();
-        //GroupTag_2002();
-        //NumbField_2003();
-        //NumbField_2004();
-        //NumbField_2005();
-        //NumbField_2006();
-        EmailField_2007();
+//        GroupTag_2001();
+//        GroupTag_2002();
+//        NumbField_2003();
+        NumbField_2004();
+//        NumbField_2005();
+//        NumbField_2006();
+//        EmailField_2007();
+//        EmailField_2008();
+//        EmailField_2009();
     }
     public static void Login(){
         findByClass("form-control").sendKeys("test@orangetoolz.com");
@@ -51,7 +53,7 @@ public class ContactManage extends Base{
     }
 
     public static void GroupTag_2001(){
-        NewContact();
+        //NewContact();
         findByXpath("//*[@id=\"contact-form\"]/div[1]/div[1]/div/div[2]/div/a/span").click(); //Add Tag
         driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         driver.findElement(By.xpath("//*[@id=\"group-add-form\"]/div[1]/div[1]/input"));
@@ -65,22 +67,25 @@ public class ContactManage extends Base{
             if((validationMessage.equals(ActMsg)) == true){
                 //System.out.println("true");
                 System.out.println("TC_2001 Passed");
+                driver.manage().window().minimize();
+                driver.manage().window().maximize();
+                findByClass("btn-secondary").click();
             }
             else
             {
-                //System.out.println("false");
                 System.out.println("TC_2001 Failed");
                 NewContact();
             }
         }
         catch (Exception e){
-
+            System.out.println("TC_2001 Failed");
+            NewContact();
         }
     }
     public static void GroupTag_2002(){
-
+        driver.manage().window().minimize();
+        driver.manage().window().maximize();
         findByXpath("//*[@id=\"contact-form\"]/div[1]/div[1]/div/div[2]/div/a/span").click(); //Add Tag Button
-        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         driver.findElement(By.xpath("//*[@id=\"group-add-form\"]/div[1]/div[1]/input")).sendKeys("100215"); //Tag name
         findByClass("submit-file").click(); //Save Button
 
@@ -167,13 +172,43 @@ public class ContactManage extends Base{
         findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("2002151"); //Number Input
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input"); //Email Input
-        findByXpath("//*[@id=\"contact-form\"]/button").click();
+        findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
         try{
             WebElement isDisp = driver.findElement(By.xpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/span/span"));
             System.out.println("TC_2007 Failed");
         }
         catch (Exception e){
             System.out.println("TC_2007 Passed");
+            NewContact();
+        }
+    }
+
+    public static void EmailField_2008(){
+        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("2012151"); //Number Input
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("test@email.com"); //Email Input
+        findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
+        try{
+            WebElement isDisp = driver.findElement(By.xpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/span/span"));
+            System.out.println("TC_2008 Failed");
+        }
+        catch (Exception e){
+            System.out.println("TC_2008 Passed");
+            NewContact();
+        }
+    }
+
+    public static void EmailField_2009(){
+        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("32012151"); //Number Input
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("testmail.com"); //Email Input
+        findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
+        try{
+            WebElement isDisp = driver.findElement(By.xpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/span/span"));
+            System.out.println("TC_2009 Passed");
+        }
+        catch (Exception e){
+            System.out.println("TC_2009 Failed");
             NewContact();
         }
     }
