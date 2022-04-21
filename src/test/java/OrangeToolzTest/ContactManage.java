@@ -164,15 +164,16 @@ public class ContactManage extends Base{
     //EMAIL FIELD
 
     public static void EmailField_2007(){
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("1002151"); //Number Input
+        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("2002151"); //Number Input
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input"); //Email Input
         findByXpath("//*[@id=\"contact-form\"]/button").click();
         try{
             WebElement isDisp = driver.findElement(By.xpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/span/span"));
-            System.out.println("TC_2006 Failed");
+            System.out.println("TC_2007 Failed");
         }
         catch (Exception e){
-            System.out.println("TC_2006 Passed");
+            System.out.println("TC_2007 Passed");
             NewContact();
         }
     }
