@@ -12,8 +12,9 @@ public class ContactManage extends Base{
         ChromeOpen();
         GetUrl("http://159.89.38.11/login");
         Login();
-        ContactManage();
+        ContactManagement();
         NewContact();
+        test123();
 //        GroupTag_2001();
 //        GroupTag_2002();
 //        NumbField_2003();
@@ -23,13 +24,16 @@ public class ContactManage extends Base{
 //        EmailField_2007();
 //        EmailField_2008();
 //        EmailField_2009();
-        FirstName_2010();
-        FirstName_2011();
-        FirstName_2012();
-        LastName_2013();
-        LastName_2014();
-        LastName_2015();
+//        FirstName_2010();
+//        FirstName_2011();
+//        FirstName_2012();
+//        LastName_2013();
+//        LastName_2014();
+//        LastName_2015();
 
+    }
+    public static void test123(){
+        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("322545");
     }
     public static void Login(){
         findByClass("form-control").sendKeys("test@orangetoolz.com");
@@ -38,7 +42,7 @@ public class ContactManage extends Base{
 
     }
 
-    public static void ContactManage(){
+    public static void ContactManagement(){
         driver.manage().window().minimize();
         driver.manage().window().maximize();
         WebElement ele = findByClass("dt-side-nav");
@@ -53,8 +57,8 @@ public class ContactManage extends Base{
 
     public static void GroupTag_2001(){
         //NewContact();
-        findByXpath("//*[@id=\"contact-form\"]/div[1]/div[1]/div/div[2]/div/a/span").click(); //Add Tag
-        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+        System.out.println("print");
+        findByXpath("//*[@id=\"contact-form\"]/div[1]/div[1]/div/div[2]/div/a/span/text()").click(); //Add Tag
         driver.findElement(By.xpath("//*[@id=\"group-add-form\"]/div[1]/div[1]/input"));
         findByClass("submit-file").click();
 
@@ -81,6 +85,7 @@ public class ContactManage extends Base{
             NewContact();
         }
     }
+
     public static void GroupTag_2002(){
         driver.manage().window().minimize();
         driver.manage().window().maximize();
@@ -93,7 +98,7 @@ public class ContactManage extends Base{
         String ActMsg = "Please fill out this field.";
         try{
             String validationMessage = (String)js.executeScript("return arguments[0].validationMessage;", elem);
-            if((validationMessage.equals(ActMsg)) == true){
+            if((validationMessage.equals(ActMsg))){
                 //System.out.println("true");
                 System.out.println("TC_2002 Failed");
             }
@@ -208,6 +213,8 @@ public class ContactManage extends Base{
     //FIRST NAME
 
     public static void FirstName_2010()  {
+
+        System.out.println("Working 1");
         driver.navigate().refresh();
         NewContact();
         findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("201012345"); //Number Input
@@ -215,6 +222,8 @@ public class ContactManage extends Base{
         findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("");
         findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
         System.out.println("TC_2010 Passed");
+
+        System.out.println("Working 2");
 
     }
 
