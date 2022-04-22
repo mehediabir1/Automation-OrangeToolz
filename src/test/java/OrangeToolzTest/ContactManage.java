@@ -1,7 +1,6 @@
 package OrangeToolzTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import java.util.concurrent.TimeUnit;
@@ -14,7 +13,7 @@ public class ContactManage extends Base{
         Login();
         ContactManage();
         NewContact();
-//        GroupTag_2001();
+        GroupTag_2001();
 //        GroupTag_2002();
 //        NumbField_2003();
 //        NumbField_2004();
@@ -23,12 +22,13 @@ public class ContactManage extends Base{
 //        EmailField_2007();
 //        EmailField_2008();
 //        EmailField_2009();
-        FirstName_2010();
-        FirstName_2011();
-        FirstName_2012();
-        LastName_2013();
-        LastName_2014();
+//        FirstName_2010();
+//        FirstName_2011();
+//        FirstName_2012();
+//        LastName_2013();
+//        LastName_2014();
         LastName_2015();
+        Birthdate_2016();
 
     }
     public static void Login(){
@@ -81,6 +81,7 @@ public class ContactManage extends Base{
             NewContact();
         }
     }
+
     public static void GroupTag_2002(){
         driver.manage().window().minimize();
         driver.manage().window().maximize();
@@ -247,6 +248,7 @@ public class ContactManage extends Base{
         NewContact();
         findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("201312345"); //Number Input
         findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("testmail2010@mail.com"); //Email Input
+        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("TestName"); //First Name
         findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("");
         findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
         System.out.println("TC_2013 Passed");
@@ -258,7 +260,8 @@ public class ContactManage extends Base{
         NewContact();
         findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("201412345"); //Number Input
         findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("testmail2010@mail.com"); //Email Input
-        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("2014");
+        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("TestName"); //First Name
+        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("2014"); //Last Name
         findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
         System.out.println("TC_2014 Failed");
 
@@ -269,9 +272,24 @@ public class ContactManage extends Base{
         NewContact();
         findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("201512345"); //Number Input
         findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("testmail2010@mail.com"); //Email Input
-        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("TestLastName");
+        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("TestName"); //First Name
+        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("TestLastName"); //Last Name
         findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
         System.out.println("TC_2015 Passed");
+
+    }
+
+    // BIRTHDATE FIELD
+
+    public static void Birthdate_2016()  {
+        driver.navigate().refresh();
+        NewContact();
+        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("201612345"); //Number Input
+        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("testmail2016@mail.com"); //Email Input
+        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("TestName"); //First Name
+        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("TestLastName"); //Last Name
+        findByXpath("//*[@id=\"date-time-picker-1\"]/input").sendKeys("2013-123-35"); //Date Field
+        findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
 
     }
 }
