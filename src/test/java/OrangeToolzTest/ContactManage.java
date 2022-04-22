@@ -14,15 +14,15 @@ public class ContactManage extends Base{
         Login();
         ContactManage();
         NewContact();
-//        GroupTag_2001();
-//        GroupTag_2002();
-//        NumbField_2003();
-//        NumbField_2004();
-//        NumbField_2005();
-//        NumbField_2006();
-//        EmailField_2007();
-//        EmailField_2008();
-//        EmailField_2009();
+        GroupTag_2001();
+        GroupTag_2002();
+        NumbField_2003();
+        NumbField_2004();
+        NumbField_2005();
+        NumbField_2006();
+        EmailField_2007();
+        EmailField_2008();
+        EmailField_2009();
         FirstName_2010();
         FirstName_2011();
         FirstName_2012();
@@ -32,10 +32,9 @@ public class ContactManage extends Base{
 
     }
     public static void Login(){
-        findByClass("form-control").sendKeys("test@orangetoolz.com");
+        findByXpath("//*[@id=\"email-1\"]").sendKeys("test@orangetoolz.com");
         findById("password-1").sendKeys("8Kh8nTe*^jdk");
-        findById("m_login_signin_submit").click();
-
+        findByXpath("//*[@id=\"m_login_signin_submit\"]").click();
     }
 
     public static void ContactManage(){
@@ -52,9 +51,10 @@ public class ContactManage extends Base{
     }
 
     public static void GroupTag_2001(){
-        //NewContact();
+        driver.manage().window().minimize();
+        driver.manage().window().maximize();
+        NewContact();
         findByXpath("//*[@id=\"contact-form\"]/div[1]/div[1]/div/div[2]/div/a/span").click(); //Add Tag
-        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         driver.findElement(By.xpath("//*[@id=\"group-add-form\"]/div[1]/div[1]/input"));
         findByClass("submit-file").click();
 
@@ -63,8 +63,7 @@ public class ContactManage extends Base{
         String ActMsg = "Please fill out this field.";
         try{
             String validationMessage = (String)js.executeScript("return arguments[0].validationMessage;", elem);
-            if((validationMessage.equals(ActMsg)) == true){
-                //System.out.println("true");
+            if((validationMessage.equals(ActMsg))){
                 System.out.println("TC_2001 Passed");
                 driver.manage().window().minimize();
                 driver.manage().window().maximize();
@@ -81,6 +80,7 @@ public class ContactManage extends Base{
             NewContact();
         }
     }
+
     public static void GroupTag_2002(){
         driver.manage().window().minimize();
         driver.manage().window().maximize();
@@ -112,7 +112,8 @@ public class ContactManage extends Base{
     //NUMBER FIELD
 
     public static void NumbField_2003(){
-
+        driver.navigate().refresh();
+        NewContact();
         findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input"); //Number Input
         findByXpath("//*[@id=\"contact-form\"]/button").click();
         try{
