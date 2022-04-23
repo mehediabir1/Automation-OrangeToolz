@@ -12,7 +12,7 @@ public class ContactManage extends Base{
         ChromeOpen();
         GetUrl("http://159.89.38.11/login");
         Login();
-        ContactManage();
+        ContactManagement();
         NewContact();
         GroupTag_2001();
         GroupTag_2002();
@@ -37,7 +37,7 @@ public class ContactManage extends Base{
         findByXpath("//*[@id=\"m_login_signin_submit\"]").click();
     }
 
-    public static void ContactManage(){
+    public static void ContactManagement(){
         driver.manage().window().minimize();
         driver.manage().window().maximize();
         WebElement ele = findByClass("dt-side-nav");
@@ -105,7 +105,7 @@ public class ContactManage extends Base{
             }
         }
         catch (Exception e){
-
+            NewContact();
         }
     }
 
