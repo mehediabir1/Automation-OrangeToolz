@@ -93,7 +93,7 @@ public class ContactManage extends Base{
         String ActMsg = "Please fill out this field.";
         try{
             String validationMessage = (String)js.executeScript("return arguments[0].validationMessage;", elem);
-            if((validationMessage.equals(ActMsg)) == true){
+            if((validationMessage.equals(ActMsg))){
                 //System.out.println("true");
                 System.out.println("TC_2002 Failed");
             }
