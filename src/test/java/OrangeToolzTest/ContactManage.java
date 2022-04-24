@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v85.log.Log;
 import org.openqa.selenium.interactions.Actions;
 import java.util.concurrent.TimeUnit;
 
@@ -29,7 +30,6 @@ public class ContactManage extends Base{
         findByClass("form-control").sendKeys("test@orangetoolz.com");
         findById("password-1").sendKeys("8Kh8nTe*^jdk");
         findById("m_login_signin_submit").click();
-
     }
 
     public static void ContactManage(){
@@ -37,7 +37,6 @@ public class ContactManage extends Base{
         driver.manage().window().minimize();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-
         WebElement ele = findByClass("dt-side-nav");
         Actions action = new Actions(driver);
         action.moveToElement(ele).build().perform();
@@ -60,7 +59,7 @@ public class ContactManage extends Base{
         String ActMsg = "Please fill out this field.";
         try{
             String validationMessage = (String)js.executeScript("return arguments[0].validationMessage;", elem);
-            if((validationMessage.equals(ActMsg)) == true){
+            if((validationMessage.equals(ActMsg))){
                 //System.out.println("true");
                 System.out.println("TC_2001 Passed");
                 driver.manage().window().minimize();
