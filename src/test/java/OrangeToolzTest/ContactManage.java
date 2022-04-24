@@ -1,9 +1,14 @@
 package OrangeToolzTest;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ContactManage extends Base{
@@ -12,28 +17,17 @@ public class ContactManage extends Base{
         ChromeOpen();
         GetUrl("http://159.89.38.11/login");
         Login();
-        ContactManagement();
+        ContactManage();
         NewContact();
-        test123();
-//        GroupTag_2001();
-//        GroupTag_2002();
-//        NumbField_2003();
-//        NumbField_2004();
-//        NumbField_2005();
-//        NumbField_2006();
-//        EmailField_2007();
-//        EmailField_2008();
-//        EmailField_2009();
-//        FirstName_2010();
-//        FirstName_2011();
-//        FirstName_2012();
-//        LastName_2013();
-//        LastName_2014();
-//        LastName_2015();
-
-    }
-    public static void test123(){
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("322545");
+        GroupTag_2001();
+        GroupTag_2002();
+        NumbField_2003();
+        NumbField_2004();
+        NumbField_2005();
+        NumbField_2006();
+        EmailField_2007();
+        EmailField_2008();
+        EmailField_2009();
     }
     public static void Login(){
         findByClass("form-control").sendKeys("test@orangetoolz.com");
@@ -42,9 +36,12 @@ public class ContactManage extends Base{
 
     }
 
-    public static void ContactManagement(){
+    public static void ContactManage(){
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().minimize();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+
         WebElement ele = findByClass("dt-side-nav");
         Actions action = new Actions(driver);
         action.moveToElement(ele).build().perform();
@@ -57,8 +54,8 @@ public class ContactManage extends Base{
 
     public static void GroupTag_2001(){
         //NewContact();
-        System.out.println("print");
-        findByXpath("//*[@id=\"contact-form\"]/div[1]/div[1]/div/div[2]/div/a/span/text()").click(); //Add Tag
+        findByXpath("//*[@id=\"contact-form\"]/div[1]/div[1]/div/div[2]/div/a/span").click(); //Add Tag
+        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         driver.findElement(By.xpath("//*[@id=\"group-add-form\"]/div[1]/div[1]/input"));
         findByClass("submit-file").click();
 
@@ -85,7 +82,6 @@ public class ContactManage extends Base{
             NewContact();
         }
     }
-
     public static void GroupTag_2002(){
         driver.manage().window().minimize();
         driver.manage().window().maximize();
@@ -98,7 +94,7 @@ public class ContactManage extends Base{
         String ActMsg = "Please fill out this field.";
         try{
             String validationMessage = (String)js.executeScript("return arguments[0].validationMessage;", elem);
-            if((validationMessage.equals(ActMsg))){
+            if((validationMessage.equals(ActMsg)) == true){
                 //System.out.println("true");
                 System.out.println("TC_2002 Failed");
             }
@@ -193,7 +189,6 @@ public class ContactManage extends Base{
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("test@email.com"); //Email Input
         findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
-
         System.out.println("TC_2008 Passed");
 
     }
@@ -205,82 +200,9 @@ public class ContactManage extends Base{
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("testmail.com"); //Email Input
         findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
-
         System.out.println("TC_2009 Failed");
-
-    }
-
-    //FIRST NAME
-
-    public static void FirstName_2010()  {
-
-        System.out.println("Working 1");
-        driver.navigate().refresh();
         NewContact();
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("201012345"); //Number Input
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("testmail2010@mail.com"); //Email Input
-        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("");
-        findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
-        System.out.println("TC_2010 Passed");
-
-        System.out.println("Working 2");
-
-    }
-
-    public static void FirstName_2011()  {
-        driver.navigate().refresh();
-        NewContact();
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("201112345"); //Number Input
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("testmail2010@mail.com"); //Email Input
-        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("2011");
-        findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
-        System.out.println("TC_2011 Failed");
-
-    }
-
-    public static void FirstName_2012()  {
-        driver.navigate().refresh();
-        NewContact();
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("201212345"); //Number Input
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("testmail2010@mail.com"); //Email Input
-        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("TestName");
-        findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
-        System.out.println("TC_2012 Passed");
-
-    }
-
-    //LAST NAME
-
-    public static void LastName_2013()  {
-        driver.navigate().refresh();
-        NewContact();
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("201312345"); //Number Input
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("testmail2010@mail.com"); //Email Input
-        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("");
-        findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
-        System.out.println("TC_2013 Passed");
-
-    }
-
-    public static void LastName_2014()  {
-        driver.navigate().refresh();
-        NewContact();
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("201412345"); //Number Input
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("testmail2010@mail.com"); //Email Input
-        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("2014");
-        findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
-        System.out.println("TC_2014 Failed");
-
-    }
-
-    public static void LastName_2015()  {
-        driver.navigate().refresh();
-        NewContact();
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[1]/div/input").sendKeys("201512345"); //Number Input
-        findByXpath("//*[@id=\"contact-form\"]/div[2]/div[2]/div/input").sendKeys("testmail2010@mail.com"); //Email Input
-        findByXpath("//*[@id=\"contact-form\"]/div[3]/div[1]/input").sendKeys("TestLastName");
-        findByXpath("//*[@id=\"contact-form\"]/button").click(); //Save Button
-        System.out.println("TC_2015 Passed");
 
     }
 }
+
