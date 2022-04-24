@@ -5,10 +5,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ContactManage extends Base{
